@@ -2,10 +2,12 @@ import React from 'react';
 import ChevronRightIcon from './assets/chevron-right.svg';
 import { View, Text, StyleSheet, TouchableOpacity, ViewStyle, TextStyle } from 'react-native';
 
+
 export interface PagingProps {
-    pagingConfig: { limit: number, skip: number, total: number };
+    total: number;
+    limit?: number;
     onPageSelected: (page: number) => void;
-    current?: number;
+    current: number;
     onNextPressed: () => void;
     onPrevPressed: () => void;
     containerStyle?: ViewStyle;
@@ -44,16 +46,21 @@ const createStyles = () =>
         }
     });
 
-export function PagingComponent({pagingConfig, onPageSelected, current = 0, onNextPressed, onPrevPressed, containerStyle, itemStyle, labelStyle, activeColor = 'red', mainColor = 'white'}: PagingProps) {
+export function PagingComponent({limit, total, onPageSelected, current, onNextPressed, onPrevPressed, containerStyle, itemStyle, labelStyle, activeColor = 'red', mainColor = 'white'}: PagingProps) {
     const styles = createStyles();
+    let totalNumberOfPages: number = total;
 
     const moveToPage = (num: number) => {
         onPageSelected(num);
-        onNextPressed();
     };
 
+    // If limit is provided, total become the total number of items instead of pages.
+    if (limit) {
+        totalNumberOfPages = Math.ceil(total / limit);
+    }
+
     const onNext = () => {
-        current + 1 === pagingConfig.total ? onPageSelected(pagingConfig.total - 1) : onPageSelected(current + 1);
+        current + 1 === totalNumberOfPages ? onPageSelected(totalNumberOfPages - 1) : onPageSelected(current + 1);
         onNextPressed();
     };
 
@@ -87,29 +94,29 @@ export function PagingComponent({pagingConfig, onPageSelected, current = 0, onNe
     const renderDotNumbers = () => {
         let dots = [];
         // All Numbered Dots count can fit in the screen.
-        if (pagingConfig.total <= 6) {
-            for (let i = 0; i < pagingConfig.total; i++) {
+        if (totalNumberOfPages <= 6) {
+            for (let i = 0; i < totalNumberOfPages; i++) {
                 dots.push(RenderDot(i));
             }
         }
         // Show first or last 3 numbers are selected.
-        else if (current < 3 || current >= pagingConfig.total - 3) {
+        else if (current < 3 || current >= totalNumberOfPages - 3) {
             for (let i = 0; i < 3; i++) {
                 dots.push(RenderDot(i));
             }
             dots.push(RenderSeparator(current < 3 ? onNext : onPrev));
             for (let i = 0; i < 3; i++) {
-                dots.push(RenderDot(pagingConfig.total - (3 - i)));
+                dots.push(RenderDot(totalNumberOfPages - (3 - i)));
             }
         } else {
             dots.push(RenderSeparator(() => moveToPage(0)));
             [current - 2, current - 1, current, current + 1, current + 2].forEach((i) => dots.push(RenderDot(i)));
-            dots.push(RenderSeparator(() => moveToPage(pagingConfig.total - 1)));
+            dots.push(RenderSeparator(() => moveToPage(totalNumberOfPages - 1)));
         }
         return dots;
     };
 
-    if (pagingConfig.total === 0) {
+    if (totalNumberOfPages === 0) {
         return null;
     }
 
