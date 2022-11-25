@@ -1,0 +1,18 @@
+{
+  "name": "react-native-paging",
+  "version": "1.0.0",
+  "description": "Modular Paging component with accessible styling components. Optimized for Typescript",
+  "main": "index.js",
+  "repository": "git@github.com:Mandaris-LLC/react-native-paging.git",
+  "author": "timomak <tmakhlay2@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "devDependencies": {
+    "@tsconfig/react-native": "^2.0.2",
+    "@types/jest": "^29.2.3",
+    "@types/react": "^18.0.25",
+    "@types/react-native": "^0.70.7",
+    "@types/react-test-renderer": "^18.0.0",
+    "typescript": "^4.9.3"
+  }
+}
