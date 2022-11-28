@@ -1,5 +1,5 @@
 import React from 'react';
-import ChevronRightIcon from './assets/chevron-right.svg';
+import ChevronRightIcon from '../assets/chevron-right.svg';
 import { View, Text, StyleSheet, TouchableOpacity, ViewStyle, TextStyle } from 'react-native';
 
 
@@ -46,7 +46,7 @@ const createStyles = () =>
         }
     });
 
-export function PagingComponent({limit, total, onPageSelected, current, onNextPressed, onPrevPressed, containerStyle, itemStyle, labelStyle, activeColor = 'red', mainColor = 'white'}: PagingProps) {
+export function PagingComponent({ limit, total, onPageSelected, current, onNextPressed, onPrevPressed, containerStyle, itemStyle, labelStyle, activeColor = 'red', mainColor = 'white' }: PagingProps) {
     const styles = createStyles();
     let totalNumberOfPages: number = total;
 
@@ -73,8 +73,8 @@ export function PagingComponent({limit, total, onPageSelected, current, onNextPr
         const containerBorderColor = num === current ? activeColor : 'transparent';
         return (
             <TouchableOpacity onPress={() => onPageSelected(num)}>
-                <View style={[styles.dotContainer,  { borderColor: containerBorderColor }, itemStyle]}>
-                    <Text style={[styles.dotLabel,{ color: num === current ? activeColor : mainColor }, labelStyle]}>{num + 1}</Text>
+                <View style={[styles.dotContainer, { borderColor: containerBorderColor }, itemStyle]}>
+                    <Text style={[styles.dotLabel, { color: num === current ? activeColor : mainColor }, labelStyle]}>{num + 1}</Text>
                 </View>
             </TouchableOpacity>
         );
@@ -84,7 +84,7 @@ export function PagingComponent({limit, total, onPageSelected, current, onNextPr
         return (
             <TouchableOpacity onPress={onPress}>
                 <View style={[styles.dotContainer]}>
-                    <Text style={[styles.dotLabel, {color: mainColor}, labelStyle]}>. . .</Text>
+                    <Text style={[styles.dotLabel, { color: mainColor }, labelStyle]}>. . .</Text>
                 </View>
             </TouchableOpacity>
         );
@@ -123,11 +123,11 @@ export function PagingComponent({limit, total, onPageSelected, current, onNextPr
     return (
         <View style={[styles.dotsContainer, containerStyle]}>
             <TouchableOpacity onPress={onPrev} style={[styles.chevronContainer]}>
-                <ChevronRightIcon style={[{ transform: [{scaleX: -1}] }]} stroke={mainColor} />
+                <ChevronRightIcon style={[{ transform: [{ scaleX: -1 }] }]} stroke={mainColor} />
             </TouchableOpacity>
             {renderDotNumbers()}
             <TouchableOpacity onPress={onNext} style={[styles.chevronContainer]}>
-                <ChevronRightIcon  stroke={mainColor}/>
+                <ChevronRightIcon stroke={mainColor} />
             </TouchableOpacity>
         </View>
     );

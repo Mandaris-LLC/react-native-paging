@@ -2,9 +2,17 @@
   "name": "react-native-paging",
   "version": "1.0.0",
   "description": "Modular Paging component with accessible styling components. Optimized for Typescript",
-  "main": "index.js",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/esm/index.d.ts",
   "repository": "git@github.com:Mandaris-LLC/react-native-paging.git",
   "author": "timomak <tmakhlay2@gmail.com>",
+  "scripts": {
+    "build": "yarn build:esm && yarn build:cjs",
+    "prepare": "npm run build",
+    "build:esm": "tsc",
+    "build:cjs": "tsc --module commonjs --outDir dist/cjs"
+  },
   "license": "MIT",
   "private": false,
   "devDependencies": {
