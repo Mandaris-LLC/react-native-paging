@@ -8,7 +8,7 @@
   "repository": "git@github.com:Mandaris-LLC/react-native-paging.git",
   "author": "timomak <tmakhlay2@gmail.com>",
   "scripts": {
-    "build": "yarn build:esm && yarn build:cjs",
+    "build": "yarn build:esm && yarn build:cjs && cp -R assets dist/",
     "prepare": "npm run build",
     "build:esm": "tsc",
     "build:cjs": "tsc --module commonjs --outDir dist/cjs"
