@@ -1,4 +1,5 @@
 import React from 'react';
+import ChevronRightIcon from '../assets/chevron-right.svg';
 import { View, Text, StyleSheet, TouchableOpacity, ViewStyle, TextStyle } from 'react-native';
 
 
@@ -122,17 +123,11 @@ export function PagingComponent({ limit, total, onPageSelected, current, onNextP
     return (
         <View style={[styles.dotsContainer, containerStyle]}>
             <TouchableOpacity onPress={onPrev} style={[styles.chevronContainer]}>
-                <View style={{ transform: [{ scaleX: -1 }] }}>
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke={mainColor}>
-                        <path d="M10 16.5L14.5 12L10 7.5" stroke-width="2" stroke-miterlimit="10" />
-                    </svg>
-                </View>
+                <ChevronRightIcon style={[{ transform: [{ scaleX: -1 }] }]} stroke={mainColor} />
             </TouchableOpacity>
             {renderDotNumbers()}
             <TouchableOpacity onPress={onNext} style={[styles.chevronContainer]}>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke={mainColor}>
-                    <path d="M10 16.5L14.5 12L10 7.5" stroke-width="2" stroke-miterlimit="10" />
-                </svg>
+                <ChevronRightIcon stroke={mainColor} />
             </TouchableOpacity>
         </View>
     );
