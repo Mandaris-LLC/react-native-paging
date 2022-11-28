@@ -37,7 +37,7 @@ const createStyles = () =>
             borderColor: 'transparent',
         },
         dotLabel: {
-            color: 'white   '
+            color: 'white'
         },
         chevronContainer: {
             flex: 1,
