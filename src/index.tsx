@@ -2,14 +2,13 @@ import React from 'react';
 import ChevronRightIcon from '../assets/chevron-right.svg';
 import { View, Text, StyleSheet, TouchableOpacity, ViewStyle, TextStyle } from 'react-native';
 
-
 export interface PagingProps {
+    current: number;
+    onPageSelected: (page: number) => void;
     total: number;
     limit?: number;
-    onPageSelected: (page: number) => void;
-    current: number;
-    onNextPressed: () => void;
-    onPrevPressed: () => void;
+    onNextPressed?: () => void;
+    onPrevPressed?: () => void;
     containerStyle?: ViewStyle;
     itemStyle?: ViewStyle;
     labelStyle?: TextStyle;
@@ -61,12 +60,12 @@ export function PagingComponent({ limit, total, onPageSelected, current, onNextP
 
     const onNext = () => {
         current + 1 === totalNumberOfPages ? onPageSelected(totalNumberOfPages - 1) : onPageSelected(current + 1);
-        onNextPressed();
+        if (onNextPressed) {onNextPressed();}
     };
 
     const onPrev = () => {
         current - 1 === -1 ? onPageSelected(0) : onPageSelected(current - 1);
-        onPrevPressed();
+        if (onPrevPressed) {onPrevPressed();}
     };
 
     const RenderDot = (num: number) => {
