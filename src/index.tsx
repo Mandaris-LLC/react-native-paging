@@ -45,7 +45,7 @@ const createStyles = () =>
         }
     });
 
-export const PagingComponent: React.FC<PagingProps> = ({ limit, total, onPageSelected, current, onNextPressed, onPrevPressed, containerStyle, itemStyle, labelStyle, activeColor = 'red', mainColor = 'white' }: PagingProps): React.ReactElement | null => {
+export const PagingComponent: React.FC<PagingProps> = ({ limit, total, onPageSelected, current, onNextPressed, onPrevPressed, containerStyle, itemStyle, labelStyle, activeColor = 'red', mainColor = 'white' }: PagingProps) => {
     const styles = createStyles();
     let totalNumberOfPages: number = total;
 
