@@ -45,7 +45,7 @@ const createStyles = () =>
         }
     });
 
-export function PagingComponent({ limit, total, onPageSelected, current, onNextPressed, onPrevPressed, containerStyle, itemStyle, labelStyle, activeColor = 'red', mainColor = 'white' }: PagingProps) {
+export const PagingComponent: React.FC<PagingProps> = ({ limit, total, onPageSelected, current, onNextPressed, onPrevPressed, containerStyle, itemStyle, labelStyle, activeColor = 'red', mainColor = 'white' }: PagingProps): React.ReactElement | null => {
     const styles = createStyles();
     let totalNumberOfPages: number = total;
 
@@ -60,12 +60,12 @@ export function PagingComponent({ limit, total, onPageSelected, current, onNextP
 
     const onNext = () => {
         current + 1 === totalNumberOfPages ? onPageSelected(totalNumberOfPages - 1) : onPageSelected(current + 1);
-        if (onNextPressed) {onNextPressed();}
+        if (onNextPressed) { onNextPressed(); }
     };
 
     const onPrev = () => {
         current - 1 === -1 ? onPageSelected(0) : onPageSelected(current - 1);
-        if (onPrevPressed) {onPrevPressed();}
+        if (onPrevPressed) { onPrevPressed(); }
     };
 
     const RenderDot = (num: number) => {
