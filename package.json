@@ -16,9 +16,8 @@
   "license": "MIT",
   "private": false,
   "peerDependencies": {
-    "@types/jest": "^29.2.3",
-    "@types/react": "^18.0.25",
-    "@types/react-native": "^0.70.7",
-    "typescript": "^4.9.3"
+    "@types/react": "^16.7.11",
+    "@types/react-native": "^0.57.65",
+    "typescript": "^3.6.3"
   }
 }
